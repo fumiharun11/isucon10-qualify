@@ -15,6 +15,14 @@ services:
       MYSQL_PASSWORD: isucon
     ports:
       - "3306:3306"
+    deploy:
+      resources:
+        limits:
+          cpus: 1
+          memory: 2048M
+        reservations:
+          cpus: 1
+          memory: 128M
 
   api-server:
     build: ../python
@@ -38,6 +46,14 @@ services:
     depends_on:
       - mysql
     command: python app.py
+    deploy:
+      resources:
+        limits:
+          cpus: 1
+          memory: 2048M
+        reservations:
+          cpus: 1
+          memory: 128M
 
   frontend:
     build: ../frontend
